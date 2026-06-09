@@ -24,3 +24,96 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.terminal-section {
+  opacity: 0.45;
+  transform: scale(0.98);
+
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.terminal-section.active {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.terminal-section {
+  opacity: 0.45;
+  transform: scale(0.96);
+
+  transition:
+    opacity 350ms ease,
+    transform 350ms ease,
+    filter 350ms ease;
+}
+
+.terminal-section.active {
+  opacity: 1;
+  transform: scale(1.04);
+
+  filter:
+    drop-shadow(
+      0 0 10px
+      rgba(137, 180, 250, 0.15)
+    )
+}
+
+.nyan-fly {
+  position: fixed;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0.25;
+
+  animation: flyAcross 8s linear forwards;
+
+  filter:
+    blur(1px)
+    saturate(0.9);
+
+  mix-blend-mode: screen;
+}
+
+.nyan-sprite {
+  width: 300px;
+  height: 128px;
+
+  background-image: url("/NyanCat.png");
+
+  background-repeat: no-repeat;
+
+  background-size: 1500px 128px;
+
+  image-rendering: pixelated;
+
+  animation:
+    nyanFrames 0.45s steps(5)
+    infinite;
+}
+
+@keyframes nyanFrames {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -1500px 0;
+  }
+}
+
+@keyframes flyAcross {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(
+      var(--endX),
+      var(--endY)
+    );
+  }
+}
